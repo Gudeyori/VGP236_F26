@@ -1,16 +1,34 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    private TMP_Text scoreText = null;
+    private int totalPoints = 0;
+    private static GameManager instance = null;
+    public static GameManager Instance { get { return instance; } }
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            UpdateScore();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void AddPoints(int points)
+    {
+        totalPoints += points;
+        Debug.Log("My Score: " + totalPoints.ToString());
+        UpdateScore();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateScore()
     {
-        
+        scoreText.text = "SCORE: " + totalPoints.ToString();
     }
 }
