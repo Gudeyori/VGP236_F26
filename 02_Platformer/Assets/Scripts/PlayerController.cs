@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private Animator animator = null;
+
+    [SerializeField]
     private GroundCheck groundCheck = null;
 
     [SerializeField]
@@ -16,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rigidBody = null;
     private float desiredSpeed = 0.0f;
+    private float direction = 1.0f;
+    private bool isJumping = false;
+    private bool isFalling = false;
 
     private Vector3 lastSafePosition = Vector3.zero;
 
@@ -31,6 +37,8 @@ public class PlayerController : MonoBehaviour
         jumpAction = playerInput.Player.Jump;
         jumpAction.performed += OnJump;
         lastSafePosition = transform.position;
+        animator.SetFloat("Direction", direction);
+        animator.SetFloat("Speed", 0.0f);
     }
 
     private void OnEnable()
@@ -53,7 +61,31 @@ public class PlayerController : MonoBehaviour
         if (groundCheck.IsGrounded())
         {
             lastSafePosition = transform.position;
+            if(rigidBody.linearVelocityY < 0.1f)
+            {
+                isFalling = false;
+            }
         }
+        else if(rigidBody.linearVelocityY < 0.0f)
+        {
+            isFalling = true;
+            isJumping = false;
+        }
+
+        if (desiredSpeed < 0.0f)
+        {
+            direction = -1.0f;
+        }
+        else if (desiredSpeed > 0.0f)
+        {
+            direction = 1.0f;
+        }
+
+        float currentSpeed = rigidBody.linearVelocityX;
+        animator.SetFloat("Direction", direction);
+        animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
+        animator.SetBool("IsJumping", isJumping);
+        animator.SetBool("IsFalling", isFalling);
     }
 
     private void FixedUpdate()
@@ -66,6 +98,7 @@ public class PlayerController : MonoBehaviour
         if (groundCheck.IsGrounded() && rigidBody.linearVelocityY < 0.1f)
         {
             rigidBody.linearVelocityY = jumpSpeed;
+            isJumping = true;
         }
     }
 
