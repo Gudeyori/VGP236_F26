@@ -4822,7 +4822,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -50
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7158299461453949043, guid: 9e5cd55b9103e4d41a81d76a8f05e320, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8048,6 +8048,10 @@ PrefabInstance:
     - target: {fileID: 7710878786947518173, guid: 53abdc9e3719d8c44a9a26bb16106d7e, type: 3}
       propertyPath: m_Name
       value: Peg
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025088564682852654, guid: 53abdc9e3719d8c44a9a26bb16106d7e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
