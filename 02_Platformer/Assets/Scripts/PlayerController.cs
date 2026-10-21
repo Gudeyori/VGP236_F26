@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private Canvas playerInfo = null;
+
+    [SerializeField]
     private Animator animator = null;
 
     [SerializeField]
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
         lastSafePosition = transform.position;
         animator.SetFloat("Direction", direction);
         animator.SetFloat("Speed", 0.0f);
+        playerInfo.worldCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -104,7 +108,12 @@ public class PlayerController : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        transform.position = lastSafePosition;
+        Vector3 spawnPosition;
+        if(!CheckPointManager.Instance.TryGetLastCheckpointPosition(out spawnPosition))
+        {
+            spawnPosition = lastSafePosition;
+        }
+        transform.position = spawnPosition;
         rigidBody.linearVelocity = Vector2.zero;
     }
 }
