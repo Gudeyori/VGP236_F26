@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
         Vector3 spawnPosition;
         if (!CheckPointManager.Instance.TryGetLastCheckpointPosition(out spawnPosition))
         {
+            Debug.Log("Setting Spawn to Checkpoint");
             spawnPosition = lastSafePosition;
         }
         transform.position = spawnPosition;

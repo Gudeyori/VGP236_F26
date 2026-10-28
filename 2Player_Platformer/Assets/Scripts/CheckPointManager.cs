@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CheckPointManager : MonoBehaviour
 {
+    [SerializeField]
     private CheckPoint lastSavedCheckpoint = null;
 
     private static CheckPointManager instance;
