@@ -1,9 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic; // for using List<T>
 
 public class PlayerController : MonoBehaviour
 {
+    // list of players to be used with respawning both at the same time
+    private static List<PlayerController> players = new List<PlayerController>();
+
     [SerializeField]
     private Canvas playerInfo = null;
 
@@ -60,12 +64,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!players.Contains(this))
+        {
+            players.Add(this);
+        }
         moveAction.Enable();
         jumpAction.Enable();
     }
 
     private void OnDisable()
     {
+        players.Remove(this);
+
         moveAction.Disable();
         jumpAction.Disable();
     }
@@ -129,7 +139,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Setting Spawn to Checkpoint");
             spawnPosition = lastSafePosition;
         }
-        transform.position = spawnPosition;
-        rigidBody.linearVelocity = Vector2.zero;
+
+        foreach (PlayerController player in players)
+        {
+            player.transform.position = spawnPosition;
+            rigidBody.linearVelocity = Vector2.zero;
+        }
     }
 }

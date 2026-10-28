@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeed = 10.0f;
     [SerializeField]
     private GroundCheck groundCheck = null;
+    [SerializeField]
+    private Animator animator = null;
 
     [SerializeField]
     private Transform cameraTarget = null;
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveVelocity = Vector3.zero;
     private Vector3 turnVelocity = Vector3.zero;
     private float pitchRotation = 0.0f;
+    private bool isJumping = false;
+    private bool isFalling = false;
 
     private void Awake()
     {
@@ -86,6 +90,23 @@ public class PlayerController : MonoBehaviour
         }
 
         pitchRotation = Mathf.Clamp(pitchRotation + look.y * aimSpeed * Time.deltaTime, minPitchAngle, maxPitchAngle);
+
+        if (!groundCheck.IsGrounded && rigidbody.linearVelocity.y < 0.1f)
+        {
+            isFalling = false;
+            isJumping = false;
+        }
+        else if(rigidbody.linearVelocity.y < -0.1f)
+        {
+            isFalling = true;
+            isJumping = false;
+        }
+
+        animator.SetFloat("FwdSpeed", move.y);
+        animator.SetFloat("SideSpeed", move.x);
+        animator.SetBool("IsJumping", isJumping);
+        animator.SetBool("IsFalling", isFalling);
+
     }
 
     private void FixedUpdate()
@@ -108,6 +129,9 @@ public class PlayerController : MonoBehaviour
             jumpVelocity.y = jumpSpeed;
             rigidbody.linearVelocity = jumpVelocity;
             //Debug.Log("I jumped!");
+
+            isJumping = true;
+            isFalling = false;
         }
         else
         {
