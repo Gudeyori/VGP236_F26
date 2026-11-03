@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;
     private bool isFalling = false;
 
+    private float stunDuration = 0.0f;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -71,6 +73,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stunDuration > 0.0f)
+        {
+            stunDuration -= Time.deltaTime;
+            return;
+        }
+
         Vector2 move = moveInput.ReadValue<Vector2>();
         Vector2 look = lookInput.ReadValue<Vector2>();
 
@@ -84,7 +92,7 @@ public class PlayerController : MonoBehaviour
         //look input from the mouse
         turnVelocity.y = look.x * turnSpeed;
 
-        if(invertY)
+        if (invertY)
         {
             look.y *= -1;
         }
@@ -96,7 +104,7 @@ public class PlayerController : MonoBehaviour
             isFalling = false;
             isJumping = false;
         }
-        else if(rigidbody.linearVelocity.y < -0.1f)
+        else if (rigidbody.linearVelocity.y < -0.1f)
         {
             isFalling = true;
             isJumping = false;
@@ -111,9 +119,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveVelocity.y = rigidbody.linearVelocity.y;
-        rigidbody.linearVelocity = moveVelocity;
-        rigidbody.angularVelocity = turnVelocity;
+        if (stunDuration <= 0.0f)
+        {
+            moveVelocity.y = rigidbody.linearVelocity.y;
+            rigidbody.linearVelocity = moveVelocity;
+            rigidbody.angularVelocity = turnVelocity;
+        }
     }
 
     private void LateUpdate()
@@ -137,5 +148,10 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("I didnt jump.");
         }
+    }
+
+    public void StunPlayer(float time)
+    {
+        stunDuration = time;
     }
 }

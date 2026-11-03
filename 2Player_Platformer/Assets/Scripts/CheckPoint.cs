@@ -6,6 +6,8 @@ public class CheckPoint : MonoBehaviour
     private GameObject inactiveState = null;
     [SerializeField]
     private GameObject activatedState = null;
+    [SerializeField]
+    private bool ignoreCheckpoint = false;
 
     private void Awake()
     {
@@ -20,6 +22,11 @@ public class CheckPoint : MonoBehaviour
             inactiveState.SetActive(false);
             activatedState.SetActive(true);
             CheckPointManager.Instance.SetHitCheckpoint(this);
+
+            if (!ignoreCheckpoint)
+            {
+                GameManagerScript.Instance.AddSnowies(1);
+            }
 
             // disables the collider -> no more touchy
             GetComponent<Collider2D>().enabled = false;

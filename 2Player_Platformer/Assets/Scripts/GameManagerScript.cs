@@ -5,10 +5,27 @@ using Unity.VisualScripting;
 public class GameManagerScript : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text scoreText = null; 
-    private int totalPoints = 0;
+    private TMP_Text gearText = null;
+    [SerializeField]
+    private TMP_Text snowPeepText = null;
+
+    [SerializeField]
+    private int totalGears = 0;
+    [SerializeField]
+    private int totalPeeps = 0;
     private static GameManagerScript instance = null;
     public static GameManagerScript Instance {  get { return instance; } }
+
+    public int GetGearNumber()
+    {
+        return totalGears;
+    }
+
+    public int GetPeepNumber()
+    {
+        return totalPeeps;
+    }
+    
     private void Awake()
     {
         if (instance == null)
@@ -20,16 +37,30 @@ public class GameManagerScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void AddPoints(int points)
+
+    public void AddGears(int gears)
     {
-        totalPoints += points;
-        Debug.Log("My Score: " + totalPoints.ToString());
+        totalGears += gears;
+        Debug.Log("My Score: " + totalGears.ToString());
         UpdateScore();
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    public void AddSnowies(int snowies)
+    {
+        totalPeeps += snowies;
+        UpdateScore();
+        //Destroy(gameObject);
     }
 
     private void UpdateScore()
     {
-        //scoreText.text = "Gears Collected: " + totalPoints.ToString() + " / 4";
+        gearText.text = "Gears: " + 0 + totalGears.ToString() + " / 4";
+        snowPeepText.text = "Snowpeeps: " + 0 + totalPeeps.ToString() + " / 4";
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

@@ -8,7 +8,11 @@ public class KillVolume : MonoBehaviour
         if (collision != null && collision.gameObject != null)
         {
             //Debug.Log("YOU DIED");
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            
+            GameObject collisionObject = collision.gameObject;
+            //Debug.Log(collisionObject.name);
+            PlayerController player = collisionObject.GetComponent<PlayerController>();
+            
             player.RespawnPlayer();
         }
     }
