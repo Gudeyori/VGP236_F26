@@ -59,6 +59,7 @@ public class GameManagerScript : MonoBehaviour
         snowPeepText.text = "Snowpeeps: " + 0 + totalPeeps.ToString() + " / 4";
     }
 
+    // this function is for clicking the end game button
     public void ExitGame()
     {
         Application.Quit();
