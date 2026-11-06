@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private InputAction lookInput = null;
     private InputAction jumpInput = null;
 
+    private Vector3 lastSafePosition = Vector3.zero;
     private Vector3 moveVelocity = Vector3.zero;
     private Vector3 turnVelocity = Vector3.zero;
     private float pitchRotation = 0.0f;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         lookInput = playerInput.Player.Look;
         jumpInput = playerInput.Player.Jump;
         jumpInput.performed += OnJump;
+        lastSafePosition = transform.position;
     }
 
     private void OnEnable()
@@ -99,10 +101,11 @@ public class PlayerController : MonoBehaviour
 
         pitchRotation = Mathf.Clamp(pitchRotation + look.y * aimSpeed * Time.deltaTime, minPitchAngle, maxPitchAngle);
 
-        if (!groundCheck.IsGrounded && rigidbody.linearVelocity.y < 0.1f)
+        if (groundCheck.IsGrounded && rigidbody.linearVelocity.y < 0.1f)
         {
             isFalling = false;
             isJumping = false;
+            lastSafePosition = transform.position;
         }
         else if (rigidbody.linearVelocity.y < -0.1f)
         {
@@ -153,5 +156,20 @@ public class PlayerController : MonoBehaviour
     public void StunPlayer(float time)
     {
         stunDuration = time;
+    }
+
+    public void RespawnPlayer()
+    {
+        Vector3 pos = Vector3.zero;
+        if(CheckpointManager.Instance.TryGetRespawnLocation(out pos))
+        {
+            pos.y += 1.0f;
+            transform.position = pos;
+        }
+        else
+        {
+            lastSafePosition.y += 1.0f;
+            transform.position = lastSafePosition;
+        }
     }
 }
