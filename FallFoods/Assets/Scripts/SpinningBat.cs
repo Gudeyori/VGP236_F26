@@ -20,7 +20,7 @@ public class SpinningBat : MonoBehaviour
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             if (pc != null)
             {
-                pc.StunPlayer(0.5f);
+                pc.StunPlayer(1.0f);
             }
         }
     }
