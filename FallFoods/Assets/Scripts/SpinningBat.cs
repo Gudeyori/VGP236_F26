@@ -21,6 +21,7 @@ public class SpinningBat : MonoBehaviour
             if (pc != null)
             {
                 pc.StunPlayer(1.0f);
+                pc.GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Impulse);
             }
         }
     }
