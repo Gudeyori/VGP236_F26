@@ -33,15 +33,13 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpInput = null;
 
     private Vector3 lastSafePosition = Vector3.zero;
-    public Vector3 moveVelocity = Vector3.zero;
+    private Vector3 moveVelocity = Vector3.zero;
     private Vector3 turnVelocity = Vector3.zero;
     private float pitchRotation = 0.0f;
     private bool isJumping = false;
     private bool isFalling = false;
 
     private float stunDuration = 0.0f;
-
-    public Vector3 platformDir = Vector3.zero;
 
     private void Awake()
     {
@@ -133,12 +131,8 @@ public class PlayerController : MonoBehaviour
         if (stunDuration <= 0.0f)
         {
             moveVelocity.y = rigidbody.linearVelocity.y;
-            //rigidbody.linearVelocity = moveVelocity;
-            // add a continuous force to the rigidbody using its mass
+            rigidbody.linearVelocity = moveVelocity;
 
-            
-
-            rigidbody.AddForce(moveVelocity + platformDir, ForceMode.Force);
             // this line was causing some weird physics issues?
             //rigidbody.angularVelocity = turnVelocity;
         }
