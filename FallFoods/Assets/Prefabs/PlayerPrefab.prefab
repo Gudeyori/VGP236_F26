@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 6982779925220941902}
   - component: {fileID: 88670702440716143}
   - component: {fileID: 7369573683558803246}
-  - component: {fileID: 8815185454840145333}
   m_Layer: 6
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -202,33 +201,13 @@ MonoBehaviour:
   aimSpeed: 0.5
   jumpSpeed: 10
   groundCheck: {fileID: 7979160212017466794}
-  animator: {fileID: 8815185454840145333}
+  animator: {fileID: 0}
   cameraTarget: {fileID: 4283864986457452958}
   invertY: 1
   maxPitchAngle: 70
   minPitchAngle: -70
---- !u!95 &8815185454840145333
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7841735373546792158}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b706bc0e399f0499cadb658bf21e7efc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  moveVelocity: {x: 0, y: 0, z: 0}
+  platformDir: {x: 0, y: 0, z: 0}
 --- !u!1001 &8601222411378214619
 PrefabInstance:
   m_ObjectHideFlags: 0

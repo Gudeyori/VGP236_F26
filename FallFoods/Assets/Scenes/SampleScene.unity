@@ -8456,7 +8456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88670702440716143, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 88670702440716143, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
       propertyPath: m_Interpolate
@@ -8464,7 +8464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88670702440716143, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
       propertyPath: m_LinearDamping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4224454390986083074, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8512,7 +8512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7369573683558803246, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
       propertyPath: moveSpeed
-      value: 200
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7369573683558803246, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
       propertyPath: turnSpeed
@@ -8582,8 +8582,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8815185454840145333, guid: 571b850863caaf141b7c4380a375dcd0, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
