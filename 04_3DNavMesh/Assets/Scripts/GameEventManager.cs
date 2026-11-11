@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GameEventManager : MonoBehaviour
 {
+    //reminder delegate defines a void function
+    public delegate void GameEventListener(GameEvent gameEvent);
+    public GameEventListener GameEventListeners { get; set; }
+
     private static GameEventManager instance = null;
     public GameEventManager Instance {  get { return instance; } }
 
@@ -15,5 +19,11 @@ public class GameEventManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Broadcast(GameEvent gameEvent)
+    {
+        // ? is if not null THEN invoke
+        GameEventListeners?.Invoke(gameEvent);
     }
 }
