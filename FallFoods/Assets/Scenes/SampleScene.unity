@@ -73236,7 +73236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpinningBat
   rigidbody: {fileID: 464932646}
-  spinSpeed: {x: 0, y: 250, z: 0}
+  spinSpeed: {x: 0, y: 500, z: 0}
 --- !u!64 &464932648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -275600,7 +275600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpinningBat
   rigidbody: {fileID: 1106848054}
-  spinSpeed: {x: 0, y: 1000, z: 0}
+  spinSpeed: {x: 0, y: 1700, z: 0}
 --- !u!64 &1106848056
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -341766,7 +341766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpinningBat
   rigidbody: {fileID: 1170964916}
-  spinSpeed: {x: 0, y: 250, z: 0}
+  spinSpeed: {x: 0, y: 500, z: 0}
 --- !u!64 &1170964918
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -410662,7 +410662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpinningBat
   rigidbody: {fileID: 1611254134}
-  spinSpeed: {x: 0, y: 1000, z: 0}
+  spinSpeed: {x: 0, y: 2500, z: 0}
 --- !u!64 &1611254136
 MeshCollider:
   m_ObjectHideFlags: 0

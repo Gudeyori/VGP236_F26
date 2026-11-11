@@ -110,11 +110,17 @@ public class PlayerController : MonoBehaviour
             isFalling = false;
             isJumping = false;
             lastSafePosition = transform.position;
+            jumpInput.Enable();
         }
         else if (rigidbody.linearVelocity.y < -0.1f)
         {
             isFalling = true;
             isJumping = false;
+        }
+
+        if (isFalling)
+        {
+            jumpInput.Disable();
         }
 
         animator.SetFloat("Speed", move.magnitude);
